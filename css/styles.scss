@@ -1,0 +1,376 @@
+// 1. ABSTRACTS => mixins | variables
+
+// Colors
+$dark-gray: hsl(0, 0%, 63%);
+$black: hsl(0, 0%, 0%);
+$white: hsl(0, 0%, 100%);
+$very-dark-gray: hsl(0, 0%, 27%);
+
+// flex-box
+@mixin flex-box($flex-direction) {
+    display: flex;
+    flex-direction: $flex-direction;
+    align-items: center;
+}
+// prev-next-arrrow button styling
+@mixin prev-next-arrow ($top, $left, $width, $height, $bg-color, $bg-image, $bg-pos, $z-index) {
+    content: "";
+    position: absolute;
+    top: $top;
+    left: $left;
+    width: $width;
+    height: $height;
+    background-color: $bg-color;
+    background-image: $bg-image;
+    background-repeat: no-repeat;
+    background-position: $bg-pos;
+    z-index: $z-index;
+}
+
+// ============================================================================
+// 2. BASE => base | fonts | typography
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box; // padding and border are included in the element's total width and height
+}
+
+// Importing fonts
+@import url(http://fonts.googleapis.com/css?family=Spartan:500,600,700);   
+$font-stack: 'Spartan', sans-serif;
+
+body {
+    background-color: $white;
+    font-size: 12px;
+    line-height: 1.5;
+    font-family: $font-stack;
+    font-weight: 500;
+}
+
+// ============================================================================
+// 3. LAYOUT => wrapper header | main | footer
+
+@for $i from 1 through 5 {
+    .section-#{$i} {grid-area: section-#{$i};}
+}
+.container {
+    min-height: 100vh;
+    // max-height: 100vh;
+    display: grid;
+    grid-template-columns: 30% 30% 10% 30%;
+    grid-template-rows: 65% 35%;
+    grid-template-areas: "section-1 section-1 section-2 section-2"
+                          "section-3 section-4 section-4 section-5";
+}
+@media screen and (max-width: 1024px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    .section-1, .section-2, .section-3, .section-4, .section-5 {
+        position: relative;
+    }
+    .section-1 {
+        min-height: 70vh;
+        min-width: 100vw;
+    }
+    .section-3, .section-5 {
+        max-height: 70vh;
+    }
+}
+.section-1 {
+    img {
+        height: 65vh;
+        width: 60vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    @media screen and (max-width: 1025px) {
+        img {
+            height: 70vh;
+            width: 100vw;
+        }
+    }
+    @keyframes img-animation {
+        0% {
+            opacity: 1;
+        }
+        25% {
+            opacity: 1;
+        }
+        33% {
+            opacity: 0;
+        }
+        92% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1
+        }
+    }
+    .img-animation-trans {
+        animation-name: img-animation;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 24s;
+        animation-direction: normal;
+    }
+    img.bottom {
+        @extend .img-animation-trans;
+        animation-delay: 16s;
+    }
+    img.mid {
+        @extend .img-animation-trans;
+        animation-delay: 8s;
+    }
+    img.top {
+        @extend .img-animation-trans;
+        animation-delay: 0;
+    }
+    
+}
+.section-2 {
+    padding: 6em 2em 0em 6em;
+    position: relative;
+
+    h1 {
+        font-size: 2.5em;
+        font-weight: 700;
+        padding-bottom: 0.6em;
+        padding-right: 2em;
+    }
+    p {
+        padding-bottom: 2em;
+        padding-right: 2em;
+    }
+
+    // Heading text animation
+    span {
+        opacity: 0.4;
+        transition: all 1s ease; 
+        color: rgb(225,173,1);
+    }
+    span.fade {
+        opacity: 1;
+        color: $black;
+    }
+    
+    .prev, .next {
+        background: none;
+        outline: none;
+        cursor: pointer;
+        border: none;
+    }
+    .prev {
+        // prev-next-arrow($top, $left, $width, $height, $bg-color: inherit, $bg-image, $bg-pos, $z-index)
+        @include prev-next-arrow(55%, 60%, 5%, 10%, $black, url('../images/icon-angle-left.svg'), center, 1);   
+        position: fixed;  
+    }
+    .next {
+        // prev-next-arrow($top, $left, $width, $height, $bg-color: inherit, $bg-image, $bg-pos, $z-index)
+        @include prev-next-arrow(55%, 65%, 5%, 10%, $very-dark-gray, url('../images/icon-angle-right.svg'),center, 1);
+        position: fixed;
+    }
+    @media screen and (max-width: 1279px){
+        // move prev and next buttons within the image frame
+        .prev {
+            // prev-next-arrow($top, $left, $width, $height, $bg-color: inherit, $bg-image, $bg-pos, $z-index)
+            @include prev-next-arrow(55%, 50%, 5%, 10%, $black, url('../images/icon-angle-left.svg'), center, 1);   
+            position: fixed;  
+        }
+        .next {
+            // prev-next-arrow($top, $left, $width, $height, $bg-color: inherit, $bg-image, $bg-pos, $z-index)
+            @include prev-next-arrow(55%, 55%, 5%, 10%, $very-dark-gray, url('../images/icon-angle-right.svg'),center, 1);
+            position: fixed;
+        }
+    }
+    @media screen and (max-width: 1024px){
+        // move prev and next buttons within the image frame (full width)
+        .prev {
+            // prev-next-arrow($top, $left, $width, $height, $bg-color: inherit, $bg-image, $bg-pos, $z-index)
+            @include prev-next-arrow(62%, 86%, 7%, 10%, $black, url('../images/icon-angle-left.svg'), center, 1);   
+            position: static;  
+        }
+        .next {
+            // prev-next-arrow($top, $left, $width, $height, $bg-color: inherit, $bg-image, $bg-pos, $z-index)
+            @include prev-next-arrow(62%, 93%, 7%, 10%, $very-dark-gray, url('../images/icon-angle-right.svg'),center, 1);
+            position: static;
+        }
+    }
+   
+}
+@media screen and (max-width: 1279px) {
+    .section-2 {
+        h1 {
+            font-size: 2.2em;
+        }
+        p {
+            padding-bottom: 3em;
+        }
+    }
+}
+@media screen and (max-width: 1079px){
+    .section-2 {
+        padding: 4em 2em 0em 6em;
+
+        p {
+            padding-bottom: 2em;
+        }
+    }
+}
+
+.section-4 {
+    padding: 4em 4em 0;
+
+    h2 {
+        font-size: 0.9em;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        word-spacing: 5px;
+        padding-bottom: 0.6em;
+    }
+}
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    padding: 4em 6em 0;
+    color: white;
+    font-weight: 600;
+    ul {
+        list-style: none;
+        display: table;
+        @include flex-box(row);
+    }
+    li {
+        display: table-cell;
+        position: relative;
+        &:first-child {
+            font-size: 2em;
+            padding-right: 3.5em;
+        }
+        &:not(first-child) {
+            padding-right: 2em;
+        }
+    }
+    
+    a {
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+    }
+    a:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: -3px;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: $white;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+    a:hover:after {
+        width: 100%;
+        left: 0;
+    }
+}
+// ============================================================================
+// 4. COMPONENTS => nav, lists, button  
+button {
+    background: none;
+	outline: none;
+    cursor: pointer;
+    border: none;
+    
+    font-family: inherit;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    word-spacing: 7px;
+	img {
+        padding: 0 0 0 1em;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .section-2,  .section-4 {
+        padding: 4em;
+    } 
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        display: flex;
+        flex-direction: row;
+    }
+    li:first-child {
+        padding-left: 30vw;
+    }
+    // MENU ICON
+    .menu-icon {
+        padding-top: 0.6em;
+        // padding-right: 30vw;
+        display: inline-block;
+        cursor: pointer;
+        // position: absolute;
+        // top: 3em;
+        // right: 0;
+    }
+    .bar1, .bar2, .bar3 {
+        width: 25px;
+        height: 2px;
+        background-color: $white;
+        margin: 4px 0;
+        transition: 0.5s;
+    }
+
+    /* rotate first bar */
+    .change .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-6px, 2.5px);
+        transform: rotate(-45deg) translate(-6px, 2.5px);
+    }
+
+    /* fade out the second bar */
+    .change .bar2 {
+        opacity: 0;
+    }
+
+    /* rotate last bar */
+    .change .bar3 {
+        -webkit-transform: rotate(45deg) translate(-6px, -2.5px);
+        transform: rotate(45deg) translate(-6px, -2.5px);
+    }
+    /* the Overlay (background) */
+    .overlay-nav {
+        /* Height & width depends on how you want to reveal the overlay (see JS below) */   
+        height: 100vh;
+        width: 100vw;
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        background-color: rgba(161, 161, 161, 0.5);
+        overflow-x: hidden; /* Disable horizontal scroll */
+        transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+        
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        padding: 2em 4em;
+    }
+    .nav-ul {
+        display: none;
+    }
+    .nav-ul-res {
+        display: flex;
+        flex-direction: row;
+        padding: 1em 0 0 6em;
+    }
+}

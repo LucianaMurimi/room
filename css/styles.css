@@ -1,0 +1,400 @@
+@import url(http://fonts.googleapis.com/css?family=Spartan:500,600,700);
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  font-size: 12px;
+  line-height: 1.5;
+  font-family: "Spartan", sans-serif;
+  font-weight: 500;
+}
+
+.section-1 {
+  grid-area: section-1;
+}
+
+.section-2 {
+  grid-area: section-2;
+}
+
+.section-3 {
+  grid-area: section-3;
+}
+
+.section-4 {
+  grid-area: section-4;
+}
+
+.section-5 {
+  grid-area: section-5;
+}
+
+.container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 30% 30% 10% 30%;
+  grid-template-rows: 65% 35%;
+  grid-template-areas: "section-1 section-1 section-2 section-2" "section-3 section-4 section-4 section-5";
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-1, .section-2, .section-3, .section-4, .section-5 {
+    position: relative;
+  }
+
+  .section-1 {
+    min-height: 70vh;
+    min-width: 100vw;
+  }
+
+  .section-3, .section-5 {
+    max-height: 70vh;
+  }
+}
+.section-1 img {
+  height: 65vh;
+  width: 60vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@media screen and (max-width: 1025px) {
+  .section-1 img {
+    height: 70vh;
+    width: 100vw;
+  }
+}
+@keyframes img-animation {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0;
+  }
+  92% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.section-1 .img-animation-trans, .section-1 img.top, .section-1 img.mid, .section-1 img.bottom {
+  animation-name: img-animation;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 24s;
+  animation-direction: normal;
+}
+.section-1 img.bottom {
+  animation-delay: 16s;
+}
+.section-1 img.mid {
+  animation-delay: 8s;
+}
+.section-1 img.top {
+  animation-delay: 0;
+}
+
+.section-2 {
+  padding: 6em 2em 0em 6em;
+  position: relative;
+}
+.section-2 h1 {
+  font-size: 2.5em;
+  font-weight: 700;
+  padding-bottom: 0.6em;
+  padding-right: 2em;
+}
+.section-2 p {
+  padding-bottom: 2em;
+  padding-right: 2em;
+}
+.section-2 span {
+  opacity: 0.4;
+  transition: all 1s ease;
+  color: #e1ad01;
+}
+.section-2 span.fade {
+  opacity: 1;
+  color: black;
+}
+.section-2 .prev, .section-2 .next {
+  background: none;
+  outline: none;
+  cursor: pointer;
+  border: none;
+}
+.section-2 .prev {
+  content: "";
+  position: absolute;
+  top: 55%;
+  left: 60%;
+  width: 5%;
+  height: 10%;
+  background-color: black;
+  background-image: url("../images/icon-angle-left.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+  position: fixed;
+}
+.section-2 .next {
+  content: "";
+  position: absolute;
+  top: 55%;
+  left: 65%;
+  width: 5%;
+  height: 10%;
+  background-color: #454545;
+  background-image: url("../images/icon-angle-right.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+  position: fixed;
+}
+@media screen and (max-width: 1279px) {
+  .section-2 .prev {
+    content: "";
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    width: 5%;
+    height: 10%;
+    background-color: black;
+    background-image: url("../images/icon-angle-left.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    position: fixed;
+  }
+  .section-2 .next {
+    content: "";
+    position: absolute;
+    top: 55%;
+    left: 55%;
+    width: 5%;
+    height: 10%;
+    background-color: #454545;
+    background-image: url("../images/icon-angle-right.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    position: fixed;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .section-2 .prev {
+    content: "";
+    position: absolute;
+    top: 62%;
+    left: 86%;
+    width: 7%;
+    height: 10%;
+    background-color: black;
+    background-image: url("../images/icon-angle-left.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    position: static;
+  }
+  .section-2 .next {
+    content: "";
+    position: absolute;
+    top: 62%;
+    left: 93%;
+    width: 7%;
+    height: 10%;
+    background-color: #454545;
+    background-image: url("../images/icon-angle-right.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    position: static;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .section-2 h1 {
+    font-size: 2.2em;
+  }
+  .section-2 p {
+    padding-bottom: 3em;
+  }
+}
+@media screen and (max-width: 1079px) {
+  .section-2 {
+    padding: 4em 2em 0em 6em;
+  }
+  .section-2 p {
+    padding-bottom: 2em;
+  }
+}
+.section-4 {
+  padding: 4em 4em 0;
+}
+.section-4 h2 {
+  font-size: 0.9em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  word-spacing: 5px;
+  padding-bottom: 0.6em;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 4em 6em 0;
+  color: white;
+  font-weight: 600;
+}
+nav ul {
+  list-style: none;
+  display: table;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+nav li {
+  display: table-cell;
+  position: relative;
+}
+nav li:first-child {
+  font-size: 2em;
+  padding-right: 3.5em;
+}
+nav li:not(first-child) {
+  padding-right: 2em;
+}
+nav a {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+nav a:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: -3px;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: white;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+nav a:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+button {
+  background: none;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  word-spacing: 7px;
+}
+button img {
+  padding: 0 0 0 1em;
+}
+
+@media screen and (max-width: 1024px) {
+  .section-2, .section-4 {
+    padding: 4em;
+  }
+}
+@media screen and (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-direction: row;
+  }
+
+  li:first-child {
+    padding-left: 30vw;
+  }
+
+  .menu-icon {
+    padding-top: 0.6em;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .bar1, .bar2, .bar3 {
+    width: 25px;
+    height: 2px;
+    background-color: white;
+    margin: 4px 0;
+    transition: 0.5s;
+  }
+
+  /* rotate first bar */
+  .change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-6px, 2.5px);
+    transform: rotate(-45deg) translate(-6px, 2.5px);
+  }
+
+  /* fade out the second bar */
+  .change .bar2 {
+    opacity: 0;
+  }
+
+  /* rotate last bar */
+  .change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-6px, -2.5px);
+    transform: rotate(45deg) translate(-6px, -2.5px);
+  }
+
+  /* the Overlay (background) */
+  .overlay-nav {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgba(161, 161, 161, 0.5);
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    padding: 2em 4em;
+  }
+
+  .nav-ul {
+    display: none;
+  }
+
+  .nav-ul-res {
+    display: flex;
+    flex-direction: row;
+    padding: 1em 0 0 6em;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
