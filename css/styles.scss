@@ -79,6 +79,15 @@ body {
         max-height: 70vh;
     }
 }
+@media screen and (max-width: 768px) {
+    .section-1 {
+        min-height: 40vh;
+        min-width: 100vw;
+    }
+    .section-3, .section-5 {
+        max-height: 50vh;
+    }
+}
 .section-1 {
     img {
         height: 65vh;
@@ -90,6 +99,12 @@ body {
     @media screen and (max-width: 1025px) {
         img {
             height: 70vh;
+            width: 100vw;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        img {
+            height: 40vh;
             width: 100vw;
         }
     }
@@ -306,12 +321,25 @@ button {
 }
 
 @media screen and (max-width: 768px) {
+    /* mobile images */
+    .bottom {
+        content: url("../images/mobile-image-hero-3.jpg");
+    }
+    .mid {
+        content: url("../images/mobile-image-hero-2.jpg");
+    }
+    .top {
+        content: url("../images/mobile-image-hero-1.jpg");
+    }
+    nav, .section-1, .section-2, .section-4 {
+        padding: 2em;
+    }
     nav {
         display: flex;
         flex-direction: row;
     }
     li:first-child {
-        padding-left: 30vw;
+        padding-left: 100px;
     }
     // MENU ICON
     .menu-icon {
