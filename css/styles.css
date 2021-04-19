@@ -363,7 +363,7 @@ button img {
   }
 
   li:first-child {
-    padding-left: 100px;
+    padding-left: 28vw;
   }
 
   .menu-icon {
@@ -416,7 +416,7 @@ button img {
     display: flex;
     flex-direction: row;
     align-content: center;
-    padding: 2em 4em;
+    padding: 2em 2em;
   }
 
   .nav-ul {
